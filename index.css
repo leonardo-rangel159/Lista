@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.column {
+    width: 30%;
+    float: left;
+    margin: 1%;
+    background-color: #f2f2f2;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Clearfix para evitar problemas de layout com floats */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Primeira divisão */
+    #app {
+        display: flex;
+    }
+    
+    #dados,
+    #generos {
+        margin-right: 20px;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    input,
+    select,
+    button {
+        margin-bottom: 10px;
+    }
+/* Fim Primeira divisão */
+    
+    
