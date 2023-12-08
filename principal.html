@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listas do Leo</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <?php
+        $sql = "SELECT id,Nome FROM Genero";
+        $result = $conn->query($sql);
+    ?>
+    <div class="container">
+        <div class="column">
+            <h2>Coluna 1</h2>
+            
+                <label for="tabela">Selecione a tabela:</label>
+                <select name="tabela" id="tabela">
+                    <option value="filmes">Filmes</option>
+                    <option value="anime">Anime</option>
+                    <option value="manga">Manga</option>
+                    <option value="livro">Livro</option>
+                    <option value="serie">Serie</option>
+                    <option value="patrick">Patrick</option>
+                </select>
+
+                <label for="nome">Digite o nome:</label>
+                <input type="text" name="nome">
+
+                <label for="sinopse">Digite a sinopse:</label>
+                <input type="text" name="sinopse">
+
+                <label for="ano" id="anoLabel">Digite o ano:</label>
+                <input type="text" name="ano" id="ano">
+
+                <label for="generos">Escolha o(s) gênero(s):</label>
+                <select size="5" multiple name="generos[]" id="generos">
+                    <!-- Gêneros serão adicionados dinamicamente via PHP -->
+                    <?php 
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option value={$row['id']}>";
+                            echo "{$row['Nome']}";
+                            echo "</option>";
+                        }
+                    ?>
+                </select>
+
+                <button id="form">Inserir Dados</button>
+            
+            <span id="mensagemadd"></span>
+        </div>
+
+        <div class="column">
+            <h2>Coluna 2</h2>
+            <label for="listaGeneros">Lista de Gêneros:</label>
+            <ul id="listaGeneros">
+                <?php
+                    while ($row = $result -> fetch_assoc()) {
+                        echo "<li>{$row['Nome']}</li>";
+                    }
+                ?>
+            </ul>
+
+            <label for="novoGenero">Adicionar Novo Gênero:</label>
+            <form action="adicionar_genero.php" method="post">
+                <input type="text" name="novoGenero">
+                <button type="submit">Adicionar Gênero</button>
+            </form>
+        </div>
+
+        <div class="column">
+            <h2>Coluna 3</h2>
+            <form action="buscar.php" method="post">
+                <label for="tabelaBuscar">Selecione a tabela:</label>
+                <select name="tabelaBuscar">
+                    <option value="filmes">Filmes</option>
+                    <option value="anime">Anime</option>
+                    <option value="manga">Manga</option>
+                    <option value="livro">Livro</option>
+                    <option value="serie">Série</option>
+                    <option value="patrick">Patrick</option>
+                </select>
+
+                <button type="submit">Buscar</button>
+            </form>
+
+            <form action="aleatorio.php" method="post">
+                <label for="tabelaAleatoria">Selecione a tabela:</label>
+                <select name="tabelaAleatoria">
+                    <option value="filmes">Filmes</option>
+                    <option value="anime">Anime</option>
+                    <option value="manga">Manga</option>
+                    <option value="livro">Livro</option>
+                    <option value="serie">Série</option>
+                    <option value="patrick">Patrick</option>
+                </select>
+
+                <button type="submit">Aleatório</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="funcoes.js"></script>
+</body>
+
+</html>
