@@ -1,5 +1,6 @@
 <?php
     $servername = "monorail.proxy.rlwy.net";
+    $port = "58524"; // A porta padrão para o MySQL é 3306
     $username = "root";
     $password = "GF1EBFFhB23b4EdDD4HDb5B6D34Gfa55";
     $dbname = "railway";
